@@ -1,8 +1,37 @@
-print("Welcome to Slot Machine Game!")
+import random
 
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
+ROWS = 3
+COLS = 3
+
+# Set up slot machine
+symbol_count = {
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D": 8
+}
+
+def get_slot_machine_spin(rows, cols, symbols):
+    all_symbols = []
+    # add the symbols into the list based on count
+    for symbol, symbol_count in symbols.items(): #loop for key & value
+        for _ in range(symbol_count):
+            all_symbols.append(symbol)
+    columns = [] # [[], [], []]
+    for _ in range(cols): # loop through col
+        column = []
+        # make a copy of all_symbols list
+        current_symbols = all_symbols[:]
+        for _ in range(rows): # loop through row
+            value = random.choice(current_symbols)
+            current_symbols.remove(value)
+            column.append(value)
+        columns.append(column)
+    return columns
+    
 
 # get user input
 def deposit():
@@ -45,6 +74,7 @@ def get_bet():
     return amount
 
 def main(): 
+    print("Welcome to Slot Machine Game!")
     balance = deposit()
     lines = get_lines()
     while True:
