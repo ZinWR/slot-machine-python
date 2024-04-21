@@ -107,7 +107,7 @@ def get_bet():
             print("Please enter a number.")
     return amount
 
-def spin():
+def spin(balance):
     lines = get_lines()
     while True:
         bet = get_bet()
@@ -123,7 +123,7 @@ def spin():
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
     print(f"You won ${winnings}.")
     print(f"You won on lines: ", *winning_lines) # pass ref to winning_lines
-    return winning_lines - total_bet
+    return winnings - total_bet
 
 def main(): 
     print("Welcome to Slot Machine Game!")
@@ -133,7 +133,7 @@ def main():
         answer = input("Press enter to play (q to quit).")
         if answer == "q":
             break
-        balance += spin()
+        balance += spin(balance)
     print(f"You left with ${balance}")
 
 main()
