@@ -32,6 +32,18 @@ def get_slot_machine_spin(rows, cols, symbols):
         columns.append(column)
     return columns
     
+def print_slot_machine(columns):
+    # [A, B, C]
+    # [B, A, A]
+    # [C, B, C]
+    # matrix transposing
+    for row in range(len(columns[0])):
+        for i, column in enumerate(columns): # get index + value with enumerate
+            if i != len(columns) - 1:
+                print(column[row], "|")
+            else: 
+                print(column[row])
+                
 
 # get user input
 def deposit():
